@@ -13,16 +13,19 @@ app.set("view engine", "ejs");
 app.use("/public", express.static("public"));
 
 app.get("/movies", (req, res) => {
-  res.send("bientôt une liste de film ici !");
+  // res.send("bientôt une liste de film ici !");
+  res.render("movies");
 });
 
 app.get("/movies/add", (req, res) => {
   res.send("route add");
 });
 
-app.get("/movies/:id", (req, res) => {
+app.get("/movies/:id/:title", (req, res) => {
   const id = req.params.id;
-  res.send(`vous regardez le film numéro ${id}`);
+  const title = req.params.title;
+  // res.send(`vous regardez le film numéro ${id}`);
+  res.render("movie-details", { moviesid: id, movietitle: title });
 });
 
 app.get("/", (req, res) => {
